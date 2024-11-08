@@ -3,7 +3,7 @@ import time
 from base.base_test import BaseTest
 
 
-@allure.feature("Reg and Auth Functionality")
+@allure.feature("Registration and Authorization Functionality")
 class TestRegAuth(BaseTest):
 
     @allure.title("Successful login to an existing account")
