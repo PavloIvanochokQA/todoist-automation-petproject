@@ -1,6 +1,9 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from pages.login_page import LoginPage
+from pages.home_page import HomePage
+from config.data import Data
 
 
 @pytest.fixture(scope='function', autouse=True)
@@ -14,3 +17,16 @@ def driver(request):
     request.cls.driver = driver
     yield driver
     driver.quit()
+
+
+@pytest.fixture(scope="function")
+def login(driver):
+    login_page = LoginPage(driver)
+    home_page = HomePage(driver)
+
+    login_page.open()
+    login_page.enter_email(Data.EMAIL)
+    login_page.enter_password(Data.PASSWORD)
+    login_page.click_submit_button()
+
+    return home_page

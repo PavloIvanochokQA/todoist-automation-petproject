@@ -3,5 +3,6 @@ import os
 
 class Data:
 
-    LOGIN = os.getenv("LOGIN")
+    EMAIL = os.getenv("EMAIL")
     PASSWORD = os.getenv("PASSWORD")
+    USERNAME = os.getenv("USERNAME")
