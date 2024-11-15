@@ -4,12 +4,13 @@
 *	[TC02](/docs/test_cases/TC02.md): Successful login to an existing account with valid information.
 *	[TC03](/docs/test_cases/TC03.md): Successful logout from an account.
 *   [TC04](/docs/test_cases/TC04.md): Ability to login using a Google account.
-*	[TC05](/docs/test_cases/TC05.md): Successful password change and login with the new password.
-*	[TC06](/docs/test_cases/TC06.md): Successful account deletion.
-*	[TC07](/docs/test_cases/TC07.md): Unsuccessful registration of a new account with invalid information.
-*	[TC08](/docs/test_cases/TC08.md): Unsuccessful login to an existing account with invalid information.
-*	[TC09](/docs/test_cases/TC09.md): Inability to change the current password with an incorrect password.
-*	[TC10](/docs/test_cases/TC10.md): Inability to delete the account with an incorrect email or password.
+*	[TC05](/docs/test_cases/TC05.md): Successful password change.
+*   [TC06](/docs/test_cases/TC06.md): Successful  email and username change.
+*	[TC07](/docs/test_cases/TC07.md): Successful account deletion.
+*	[TC08](/docs/test_cases/TC08.md): Unsuccessful registration of a new account with invalid information.
+*	[TC09](/docs/test_cases/TC09.md): Unsuccessful login to an existing account with invalid information.
+*	[TC10](/docs/test_cases/TC10.md): Inability to change the current password with an incorrect password.
+*	[TC11](/docs/test_cases/TC11.md): Inability to delete the account with an incorrect email or password.
 
 ## 2. Task Creation and Editing:
 * [TC11](/docs/test_cases/TC11.md): Successful task creation with different priorities.

@@ -8,28 +8,24 @@ class HomePage(BasePage):
 
     PAGE_URL = Links.HOME_PAGE
 
-    USERNAME_BUTTON = ("xpath", "//button[@aria-label='Settings']")
+    USERNAME_BUTTON = ("xpath", "//button[@aria-haspopup='menu']")
     LOGOUT_BUTTON = ("xpath", "(//span[@class='user_menu_label'])[9]")
+    SETTINGS_BUTTON = ("xpath", "(//span[@class='user_menu_label'])[1]")
 
-    @allure.step("Verify that the username from registration is displayed in the sidebar")
-    def is_sidebar_contains_fake_username(self):
-        sidebar_username = self.wait.until(
-            EC.visibility_of_element_located(self.USERNAME_BUTTON)).text
-        assert self.fake_data_generator.fake_username in sidebar_username, f"Username '{
-            self.fake_data_generator.fake_username}' not found in the sidebar"
-
-    @allure.step("Verify that the sidebar contains the username")
-    def is_sidebar_contains_username(self, username):
-        sidebar_username = self.wait.until(
-            EC.visibility_of_element_located(self.USERNAME_BUTTON)).text
-        assert username in sidebar_username, f"Username '{
-            username}' not found in the sidebar"
-
-    @allure.step("Click on the username button")
+    @allure.step("Click on the \"Username\" button")
     def click_username_button(self):
-        self.wait.until(EC.element_to_be_clickable(
-            self.USERNAME_BUTTON)).click()
+        self.click_element(self.USERNAME_BUTTON)
 
-    @allure.step("Click on the Log out button")
+    @allure.step("Click on the \"Log out\" button")
     def click_logout_button(self):
-        self.wait.until(EC.element_to_be_clickable(self.LOGOUT_BUTTON)).click()
+        self.click_element(self.LOGOUT_BUTTON)
+
+    @allure.step("Click on the \"Settings\" button")
+    def click_settings_button(self):
+        self.click_element(self.SETTINGS_BUTTON)
+
+    @allure.step("Verify that the sidebar contains username")
+    def is_sidebar_contains_username(self, username):
+        sidebar_username = self.wait_for_visibility(self.USERNAME_BUTTON).text
+        assert username in sidebar_username, \
+            f"Username '{username}' not found in the sidebar"
