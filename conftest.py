@@ -4,7 +4,9 @@ from selenium.webdriver.chrome.options import Options
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
 from pages.signup_page import SignupPage
-from pages.settings_pages import AccountSettingsPage, DeleteSettingsPage
+from pages.profile_management_pages import AccountManagementPage
+from pages.profile_management_pages import DeleteManagementPage
+from pages.profile_management_pages import AccountDeletedPage
 from utils.fake_data_generator import FakeDataGenerator
 from config.data import Data
 
@@ -31,13 +33,14 @@ def login(driver):
     login_page.enter_email(Data.EMAIL)
     login_page.enter_password(Data.PASSWORD)
     login_page.click_login_button()
+    home_page.is_opened()
     return home_page
 
 
 @pytest.fixture(scope="function")
 def create_account(driver, request):
     signup_page = SignupPage(driver)
-
+    home_page = HomePage(driver)
     fake = FakeDataGenerator()
     email = fake.email
     password = fake.password
@@ -51,24 +54,27 @@ def create_account(driver, request):
     signup_page.click_continue_button()
     signup_page.select_personal_checkbox()
     signup_page.click_launch_todoist_button()
+    home_page.is_opened()
     return email, password, username
 
 
 @pytest.fixture(scope="function")
 def delete_account(driver):
     home_page = HomePage(driver)
-    delete_settings_page = DeleteSettingsPage(driver)
-    account_settings_page = AccountSettingsPage(driver)
+    delete_management_page = DeleteManagementPage(driver)
+    account_management_page = AccountManagementPage(driver)
+    account_deleted_page = AccountDeletedPage(driver)
 
     def _delete_account(email, password):
         try:
             home_page.open()
             home_page.click_username_button()
             home_page.click_settings_button()
-            account_settings_page.click_delete_account_button()
-            delete_settings_page.enter_todoist_email(email)
-            delete_settings_page.enter_todoist_password(password)
-            delete_settings_page.click_delete_account_button()
+            account_management_page.click_delete_account_button()
+            delete_management_page.enter_todoist_email(email)
+            delete_management_page.enter_todoist_password(password)
+            delete_management_page.click_delete_account_button()
+            account_deleted_page.is_opened()
         except Exception as e:
             print(f"Error during account deletion: {e}")
 

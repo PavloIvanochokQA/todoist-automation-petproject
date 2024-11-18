@@ -17,6 +17,7 @@ class SignupPage(BasePage):
     WORK_CHECKBOX = ("xpath", "//button[@data-gtm-id='work']")
     EDUCATION_CHECKBOX = ("xpath", "//button[@data-gtm-id='education']")
     PAGE_HEADIGN = ("xpath", "//div[@class='fb8d74bb']//h1")
+    ERROR_MESSAGE = ("xpath", "//form/div[@class='a83bd4e0 _266d6623 _8f5b5f2b fb8d74bb']")
 
     @allure.step("Enter email")
     def enter_email(self, email):
@@ -61,3 +62,8 @@ class SignupPage(BasePage):
         heading_element = self.wait_for_visibility(self.PAGE_HEADIGN)
         assert heading_element.text == "Sign up", \
             f"Expected page heading \"Sign up\" but got \"{heading_element.text}\""
+
+    @allure.step("Verify that the page displays an error message")
+    def is_error_message_visible(self):
+        self.wait_for_visibility(self.ERROR_MESSAGE)
+    

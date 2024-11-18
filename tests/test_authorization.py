@@ -1,10 +1,16 @@
 import allure
+import pytest
+import random
 from base.base_test import BaseTest
 
 
-@allure.suite("Authorization Functionality")
 class TestAuthorization(BaseTest):
 
+    @allure.feature("Authorization")
+    @allure.story("User Login")
+    @allure.description("""
+    This test verifies that a user can successfully log in to an existing account using valid email and password credentials
+    """)
     @allure.title("TC02 Successful login to an existing account with valid information")
     def test_successful_authorization(self):
         # Steps:
@@ -16,6 +22,11 @@ class TestAuthorization(BaseTest):
         self.home_page.is_opened()
         self.home_page.is_sidebar_contains_username(self.data.USERNAME)
 
+    @allure.feature("Authorization")
+    @allure.story("User Logout")
+    @allure.description("""
+    This test verifies that a user can successfully log out from an account and is redirected to the login page
+    """)
     @allure.title("TC03 Successful logout from an account")
     def test_successful_logout(self, login):
         # Steps:
@@ -24,7 +35,13 @@ class TestAuthorization(BaseTest):
         self.login_page.is_opened()
         self.login_page.is_page_heading_login()
 
+    @allure.feature("Authorization")
+    @allure.story("Third-Party Login")
+    @allure.description("""
+    This test verifies that a user can successfully log in using a Google account, including the authorization process via Google's login page
+    """)
     @allure.title("TC04 Ability to login using a Google account")
+    @pytest.mark.skip(reason="The test is skipped because a CAPTCHA pass is sometimes required")
     def test_successful_authorization_using_google(self):
         # Steps:
         self.login_page.open()
@@ -36,4 +53,28 @@ class TestAuthorization(BaseTest):
         self.google_account_page.click_confirm_password_button()
         self.home_page.is_opened()
         self.home_page.is_sidebar_contains_username(self.data.GMAIL_USERNAME)
-        
+
+    @allure.feature("Authorization")
+    @allure.story("Unsuccessful Login with Invalid Credentials")
+    @allure.description("""
+    This test verifies that a user cannot log in to an existing account using invalid credentials, such as incorrect email or password
+    """)
+    @allure.title("TC09 Unsuccessful login to an existing account with invalid information")
+    def test_unsuccessful_authorization(self):
+        email = self.data.EMAIL
+        password = self.data.PASSWORD
+        invalid_email = self.fake.email
+        invalid_password = "password" + str(random.randint(10000, 99999))
+        # Steps:
+        self.login_page.open()
+        self.login_page.is_page_heading_login()
+        self.login_page.enter_email(invalid_email)
+        self.login_page.enter_password(password)
+        self.login_page.click_login_button()
+        self.login_page.is_error_message_visible()
+        self.login_page.is_opened()
+        self.login_page.enter_email(email)
+        self.login_page.enter_password(invalid_password)
+        self.login_page.click_login_button()
+        self.login_page.is_error_message_visible()
+        self.login_page.is_opened()

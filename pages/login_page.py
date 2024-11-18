@@ -1,7 +1,6 @@
 import allure
 from base.base_page import BasePage
 from config.links import Links
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class LoginPage(BasePage):
@@ -14,6 +13,7 @@ class LoginPage(BasePage):
     USERNAME_BUTTON = ("xpath", "//button[@aria-label='Settings']")
     GOOGLE_BUTTON = ("xpath", "//a[@data-gtm-id='google-provider-link']")
     PAGE_HEADING = ("xpath", "//div[@class='fb8d74bb']//h1")
+    ERROR_MESSAGE = ("xpath", "//form/div[@class='a83bd4e0 _266d6623 _8f5b5f2b fb8d74bb']")
 
     @allure.step("Enter email")
     def enter_email(self, email):
@@ -36,3 +36,7 @@ class LoginPage(BasePage):
         heading_element = self.wait_for_visibility(self.PAGE_HEADING)
         assert heading_element.text == "Log in", \
             f"Expected \"Log in\" but got \"{heading_element.text}\""
+
+    @allure.step("Verify that the page displays an error message")
+    def is_error_message_visible(self):
+        self.wait_for_visibility(self.ERROR_MESSAGE)

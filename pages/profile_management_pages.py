@@ -6,7 +6,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 
 
-class AccountSettingsPage(BasePage):
+class AccountManagementPage(BasePage):
 
     PAGE_URL = Links.ACCOUNT_SETTINGS_PAGE
 
@@ -43,8 +43,12 @@ class AccountSettingsPage(BasePage):
     def click_close_settings_button(self):
         self.click_element(self.CLOSE_SETTINGS_BUTTON)
 
+    @allure.step("Verify that the page displays an error message")
+    def is_error_message_visible(self):
+        self.wait_for_visibility(self.ERROR_MESSAGE)
+
     @allure.step("Verify that the error message is not visible")
-    def is_error_message_is_not_visible(self):
+    def is_error_message_not_visible(self):
         try:
             WebDriverWait(self.driver, 2).until(
                 EC.visibility_of_element_located(self.ERROR_MESSAGE))
@@ -54,7 +58,7 @@ class AccountSettingsPage(BasePage):
             assert True
 
 
-class PasswordSettingsPage(AccountSettingsPage):
+class PasswordManagementPage(AccountManagementPage):
 
     PAGE_URL = Links.PASSWORD_SETTINGS_PAGE
 
@@ -77,7 +81,7 @@ class PasswordSettingsPage(AccountSettingsPage):
         self.click_element(self.CHANGE_PASSWORD_BUTTON)
 
 
-class EmailSettingsPage(AccountSettingsPage):
+class EmailManagementPage(AccountManagementPage):
 
     PAGE_URL = Links.EMAIL_SETTINGS_PAGE
 
@@ -100,13 +104,14 @@ class EmailSettingsPage(AccountSettingsPage):
         self.click_element(self.CHANGE_EMAIL_BUTTON)
 
 
-class DeleteSettingsPage(AccountSettingsPage):
+class DeleteManagementPage(AccountManagementPage):
 
     PAGE_URL = Links.DELETE_SETTINGS_PAGE
 
     TODOIST_EMAIL_FIELD = ("xpath", "(//input[@type='text'])[2]")
     TODOIST_PASSWORD_FIELD = ("xpath", "//input[@type='password']")
     DELETE_ACCOUNT_BUTTON = ("xpath", "//button[@type='submit']")
+    ERROR_MESSAGE = ("xpath", "//div[@aria-live='polite']")
 
     @allure.step("Enter Todoist email")
     def enter_todoist_email(self, email):

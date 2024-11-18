@@ -1,10 +1,15 @@
 import allure
+import random
 from base.base_test import BaseTest
 
 
-@allure.suite("Registration Functionality")
 class TestRegistration(BaseTest):
 
+    @allure.feature("Registration")
+    @allure.story("Account Creation")
+    @allure.description("""
+    This test verifies that a new account can be successfully registered using valid email, password, and username information
+    """)
     @allure.title("TC01 Successful registration of a new account with valid information")
     def test_registration_account(self, delete_account):
         email = self.fake.email
@@ -26,3 +31,27 @@ class TestRegistration(BaseTest):
         # Postconditions:
         with allure.step("Postconditions: Delete the created account"):
             delete_account(email, password)
+
+    @allure.feature("Registration")
+    @allure.story("Unsuccessful Registration with Invalid Data")
+    @allure.description("""
+    This test verifies that a new user cannot register an account when providing invalid information, such as incorrect email format, missing password, or other invalid inputs
+    """)
+    @allure.title("TC08 Unsuccessful registration of a new account with invalid information")
+    def test_unsuccessful_registration(self):
+        email = self.fake.email
+        password = self.fake.password
+        invalid_email = self.data.EMAIL
+        invalid_password = str(random.randint(10000, 99999))
+        # Steps:
+        self.signup_page.open()
+        self.signup_page.is_page_heading_signup()
+        self.signup_page.enter_email(invalid_email)
+        self.signup_page.enter_password(password)
+        self.signup_page.click_signup_button()
+        self.signup_page.is_error_message_visible()
+        self.signup_page.is_page_heading_signup()
+        self.signup_page.enter_email(email)
+        self.signup_page.enter_password(invalid_password)
+        self.signup_page.click_signup_button()
+        self.signup_page.is_page_heading_signup()
