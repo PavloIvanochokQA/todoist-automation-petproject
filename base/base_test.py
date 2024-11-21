@@ -8,7 +8,8 @@ from pages.profile_management_pages import AccountManagementPage
 from pages.profile_management_pages import PasswordManagementPage
 from pages.profile_management_pages import EmailManagementPage
 from pages.profile_management_pages import DeleteManagementPage
-from pages.profile_management_pages import AccountDeletedPage
+from pages.account_deleted_page import AccountDeletedPage
+from pages.task_page import TaskPage
 from utils.fake_data_generator import FakeDataGenerator
 
 
@@ -24,6 +25,7 @@ class BaseTest:
     email_management_page: EmailManagementPage
     delete_management_page: DeleteManagementPage
     account_deleted_page: AccountDeletedPage
+    task_page: TaskPage
 
     fake = FakeDataGenerator()
 
@@ -40,3 +42,4 @@ class BaseTest:
         request.cls.email_management_page = EmailManagementPage(driver)
         request.cls.delete_management_page = DeleteManagementPage(driver)
         request.cls.account_deleted_page = AccountDeletedPage(driver)
+        request.cls.task_page = TaskPage(driver)

@@ -1,4 +1,5 @@
 import pytest
+import random
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from pages.home_page import HomePage
@@ -6,7 +7,7 @@ from pages.login_page import LoginPage
 from pages.signup_page import SignupPage
 from pages.profile_management_pages import AccountManagementPage
 from pages.profile_management_pages import DeleteManagementPage
-from pages.profile_management_pages import AccountDeletedPage
+from pages.account_deleted_page import AccountDeletedPage
 from utils.fake_data_generator import FakeDataGenerator
 from config.data import Data
 
@@ -38,7 +39,7 @@ def login(driver):
 
 
 @pytest.fixture(scope="function")
-def create_account(driver, request):
+def create_account(driver):
     signup_page = SignupPage(driver)
     home_page = HomePage(driver)
     fake = FakeDataGenerator()
@@ -77,5 +78,21 @@ def delete_account(driver):
             account_deleted_page.is_opened()
         except Exception as e:
             print(f"Error during account deletion: {e}")
-
     return _delete_account
+
+
+@pytest.fixture(scope="function")
+def create_task(driver):
+    home_page = HomePage(driver)
+    fake = FakeDataGenerator()
+    name = fake.task_name
+    description = fake.task_description
+    priority = random.randint(1, 4)
+
+    home_page.click_add_task_button()
+    home_page.enter_task_name(name)
+    home_page.enter_task_description(description)
+    home_page.set_priority(priority)
+    home_page.click_submit_add_task_button()
+    home_page.is_task_list_contains_task(name)
+    return name, description, priority

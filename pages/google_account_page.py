@@ -1,6 +1,7 @@
 import allure
 from base.base_page import BasePage
 from config.links import Links
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class GoogleAccountPage(BasePage):
@@ -30,6 +31,5 @@ class GoogleAccountPage(BasePage):
 
     def is_opened(self):
         with allure.step(f"Verify that a page with a URL starting with {self.PAGE_URL} is opened"):
-            current_url = self.driver.current_url
-            assert current_url.startswith(self.PAGE_URL), \
-                f"Expected URL to start with {self.PAGE_URL}, but got {current_url}"
+            WebDriverWait(self.driver, 3).until(
+                lambda driver: driver.current_url.startswith(self.PAGE_URL))

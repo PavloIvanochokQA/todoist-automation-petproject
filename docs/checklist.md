@@ -13,18 +13,18 @@
 *	[TC11](/docs/test_cases/TC11.md): Inability to delete the account with an incorrect email or password.
 
 ## 2. Task Creation and Editing:
-* [TC11](/docs/test_cases/TC11.md): Successful task creation with different priorities.
-* [TC12](/docs/test_cases/TC12.md): Successful change of name, description, and priority for a task.
-* [TC13](/docs/test_cases/TC13.md): Successful addition of a sub-task.
-* [TC14](/docs/test_cases/TC14.md): Successful change of task due date and time.
-* [TC15](/docs/test_cases/TC15.md): Successful task completion and marking as completed.
-* [TC16](/docs/test_cases/TC16.md): Successful task deletion.
-* [TC17](/docs/test_cases/TC17.md): Successful task creation with an emoji.
-* [TC18](/docs/test_cases/TC18.md): Successful task creation with a link.
-* [TC19](/docs/test_cases/TC19.md): Successful addition of a comment to a task.
-* [TC20](/docs/test_cases/TC20.md): Successful addition of a label to a task.
-* [TC21](/docs/test_cases/TC21.md): Successful task duplication.
-* [TC22](/docs/test_cases/TC22.md): Unsuccessful task creation with invalid information.
+* [TC12](/docs/test_cases/TC12.md): Successful task creation.
+* [TC13](/docs/test_cases/TC13.md): Successful change of name, description, and priority for a task.
+* [TC14](/docs/test_cases/TC14.md): Successful addition of a sub-task.
+* [TC15](/docs/test_cases/TC15.md): Successful change of task due date and time.
+* [TC16](/docs/test_cases/TC16.md): Successful task completion and marking as completed.
+* [TC17](/docs/test_cases/TC17.md): Successful task deletion.
+* [TC18](/docs/test_cases/TC18.md): Successful task creation with an emoji.
+* [TC19](/docs/test_cases/TC19.md): Successful task creation with a link.
+* [TC20](/docs/test_cases/TC20.md): Successful addition of a comment to a task.
+* [TC21](/docs/test_cases/TC21.md): Successful addition of a label to a task.
+* [TC22](/docs/test_cases/TC22.md): Successful task duplication.
+* [TC23](/docs/test_cases/TC23.md): Unsuccessful task creation with invalid information.
 
 ## 3. Task Lists and Boards:
 * [TC23](/docs/test_cases/TC23.md): Successful creation of a new Task List.

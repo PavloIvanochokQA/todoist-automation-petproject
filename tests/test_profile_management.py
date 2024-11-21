@@ -1,6 +1,7 @@
 import allure
 import random
 from base.base_test import BaseTest
+from utils.fake_data_generator import FakeDataGenerator
 
 
 class TestProfileManagement(BaseTest):
@@ -25,14 +26,15 @@ class TestProfileManagement(BaseTest):
         self.account_deleted_page.is_page_heading_account_deleted()
 
     @allure.feature("Profile Management")
-    @allure.story("Password Management")
+    @allure.story("Password Change")
     @allure.description("""
     This test verifies that a user can successfully change their password through the account settings by entering the current password and a new one
     """)
     @allure.title("TC05 Successful password change")
     def test_successful_password_change(self, create_account, delete_account):
         email, password, username = create_account
-        new_password = str(random.randint(1000, 9999)) + password
+        fake = FakeDataGenerator()
+        new_password = fake.password
         is_password_changed = False
         # Steps:
         try:
@@ -60,8 +62,9 @@ class TestProfileManagement(BaseTest):
     @allure.title("TC06 Successful email and username change")
     def test_successful_email_and_username_change(self, create_account, delete_account):
         email, password, username = create_account
-        new_email = str(random.randint(1000, 9999)) + email
-        new_username = username + str(random.randint(10, 99))
+        fake = FakeDataGenerator()
+        new_email = fake.email
+        new_username = fake.username
         is_email_changed = False
         # Steps:
         try:
@@ -93,9 +96,10 @@ class TestProfileManagement(BaseTest):
     @allure.title("TC10 Inability to change the current password with an incorrect password")
     def test_unsuccessful_password_change(self, create_account, delete_account):
         email, password, username = create_account
-        new_password = password + str(random.randint(1000, 9999))
-        invalid_password = "password" + str(random.randint(1000, 9999))
-        invalid_new_password = str(random.randint(10000, 99999))
+        fake = FakeDataGenerator()
+        new_password = fake.password
+        invalid_password = fake.password
+        invalid_new_password = str(random.randint(1000000, 9999999))
         # Steps:
         try:
             self.home_page.click_username_button()
@@ -124,8 +128,9 @@ class TestProfileManagement(BaseTest):
     @allure.title("TC11 Inability to delete the account with an incorrect email or password")
     def test_unsuccessful_account_deletion(self, create_account, delete_account):
         email, password, username = create_account
-        invalid_email = str(random.randint(1000, 9999)) + email
-        invalid_password = "password" + str(random.randint(1000, 9999))
+        fake = FakeDataGenerator()
+        invalid_email = fake.email
+        invalid_password = fake.password
         # Steps:
         try:
             self.home_page.click_username_button()

@@ -1,6 +1,7 @@
 import allure
 import random
 from base.base_test import BaseTest
+from utils.fake_data_generator import FakeDataGenerator
 
 
 class TestRegistration(BaseTest):
@@ -12,9 +13,10 @@ class TestRegistration(BaseTest):
     """)
     @allure.title("TC01 Successful registration of a new account with valid information")
     def test_registration_account(self, delete_account):
-        email = self.fake.email
-        password = self.fake.password
-        username = self.fake.username
+        fake = FakeDataGenerator()
+        email = fake.email
+        password = fake.password
+        username = fake.username
         # Steps:
         self.signup_page.open()
         self.signup_page.is_page_heading_signup()
@@ -39,10 +41,11 @@ class TestRegistration(BaseTest):
     """)
     @allure.title("TC08 Unsuccessful registration of a new account with invalid information")
     def test_unsuccessful_registration(self):
-        email = self.fake.email
-        password = self.fake.password
+        fake = FakeDataGenerator()
+        email = fake.email
+        password = fake.password
         invalid_email = self.data.EMAIL
-        invalid_password = str(random.randint(10000, 99999))
+        invalid_password = str(random.randint(1000000, 9999999))
         # Steps:
         self.signup_page.open()
         self.signup_page.is_page_heading_signup()

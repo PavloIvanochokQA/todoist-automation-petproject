@@ -1,7 +1,7 @@
 import allure
 import pytest
-import random
 from base.base_test import BaseTest
+from utils.fake_data_generator import FakeDataGenerator
 
 
 class TestAuthorization(BaseTest):
@@ -61,10 +61,11 @@ class TestAuthorization(BaseTest):
     """)
     @allure.title("TC09 Unsuccessful login to an existing account with invalid information")
     def test_unsuccessful_authorization(self):
+        fake = FakeDataGenerator()
         email = self.data.EMAIL
         password = self.data.PASSWORD
-        invalid_email = self.fake.email
-        invalid_password = "password" + str(random.randint(10000, 99999))
+        invalid_email = fake.email
+        invalid_password = fake.password
         # Steps:
         self.login_page.open()
         self.login_page.is_page_heading_login()
