@@ -19,12 +19,11 @@
 * [TC15](/docs/test_cases/TC15.md): Successful change of task due date and time.
 * [TC16](/docs/test_cases/TC16.md): Successful task completion and marking as completed.
 * [TC17](/docs/test_cases/TC17.md): Successful task deletion.
-* [TC18](/docs/test_cases/TC18.md): Successful task creation with an emoji.
-* [TC19](/docs/test_cases/TC19.md): Successful task creation with a link.
-* [TC20](/docs/test_cases/TC20.md): Successful addition of a comment to a task.
-* [TC21](/docs/test_cases/TC21.md): Successful addition of a label to a task.
-* [TC22](/docs/test_cases/TC22.md): Successful task duplication.
-* [TC23](/docs/test_cases/TC23.md): Unsuccessful task creation with invalid information.
+* [TC18](/docs/test_cases/TC18.md): Successful task creation with a link.
+* [TC19](/docs/test_cases/TC19.md): Successful addition of a comment to a task.
+* [TC20](/docs/test_cases/TC20.md): Successful addition of a label to a task.
+* [TC21](/docs/test_cases/TC21.md): Successful task duplication.
+* [TC22](/docs/test_cases/TC22.md): Unsuccessful task creation with invalid information.
 
 ## 3. Task Lists and Boards:
 * [TC23](/docs/test_cases/TC23.md): Successful creation of a new Task List.

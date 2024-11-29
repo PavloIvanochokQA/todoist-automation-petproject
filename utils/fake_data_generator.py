@@ -9,3 +9,4 @@ class FakeDataGenerator:
         self.password = self.fake.password(length=12)
         self.task_name = self.fake.sentence()
         self.task_description = ' '.join(self.fake.sentences(nb=3))
+        self.comment = self.fake.sentence()

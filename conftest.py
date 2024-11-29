@@ -85,14 +85,26 @@ def delete_account(driver):
 def create_task(driver):
     home_page = HomePage(driver)
     fake = FakeDataGenerator()
-    name = fake.task_name
-    description = fake.task_description
-    priority = random.randint(1, 4)
+    task_name = fake.task_name
+    task_description = fake.task_description
+    task_priority = random.randint(1, 4)
 
     home_page.click_add_task_button()
-    home_page.enter_task_name(name)
-    home_page.enter_task_description(description)
-    home_page.set_priority(priority)
+    home_page.enter_task_name(task_name)
+    home_page.enter_task_description(task_description)
+    home_page.set_task_priority(task_priority)
     home_page.click_submit_add_task_button()
-    home_page.is_task_list_contains_task(name)
-    return name, description, priority
+    home_page.is_task_list_contains_task(task_name)
+    return task_name, task_description, task_priority
+
+
+@pytest.fixture(scope="function")
+def delete_task(driver):
+    def delete(task_name):
+        home_page = HomePage(driver)
+
+        home_page.open()
+        home_page.click_more_actions_button(task_name)
+        home_page.click_delete_button()
+        home_page.confirm_deletion()
+    return delete
