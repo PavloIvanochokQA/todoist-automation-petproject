@@ -14,9 +14,14 @@ class BasePage():
         with allure.step(f"Open the page {self.PAGE_URL}"):
             self.driver.get(self.PAGE_URL)
 
+    # def is_opened(self):
+    #     with allure.step(f"Verify that the page {self.PAGE_URL} is opened"):
+    #         self.wait.until(EC.url_to_be(self.PAGE_URL))
+
     def is_opened(self):
-        with allure.step(f"Verify that the page {self.PAGE_URL} is opened"):
-            self.wait.until(EC.url_to_be(self.PAGE_URL))
+        with allure.step(f"Verify that a page with a URL {self.PAGE_URL} is opened"):
+            WebDriverWait(self.driver, 5).until(
+                lambda driver: driver.current_url.startswith(self.PAGE_URL))
 
     def click_element(self, locator):
         self.wait.until(EC.element_to_be_clickable(locator)).click()

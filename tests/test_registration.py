@@ -7,7 +7,6 @@ from utils.fake_data_generator import FakeDataGenerator
 class TestRegistration(BaseTest):
 
     @allure.feature("Registration")
-    @allure.story("Account Creation")
     @allure.description("""
     This test verifies that a new account can be successfully registered using valid email, password, and username information
     """)
@@ -35,7 +34,6 @@ class TestRegistration(BaseTest):
             delete_account(email, password)
 
     @allure.feature("Registration")
-    @allure.story("Unsuccessful Registration with Invalid Data")
     @allure.description("""
     This test verifies that a new user cannot register an account when providing invalid information, such as incorrect email format, missing password, or other invalid inputs
     """)

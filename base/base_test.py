@@ -10,6 +10,7 @@ from pages.profile_management_pages import EmailManagementPage
 from pages.profile_management_pages import DeleteManagementPage
 from pages.account_deleted_page import AccountDeletedPage
 from pages.task_page import TaskPage
+from pages.projects_page import ProjectsPage
 from utils.fake_data_generator import FakeDataGenerator
 
 
@@ -26,7 +27,7 @@ class BaseTest:
     delete_management_page: DeleteManagementPage
     account_deleted_page: AccountDeletedPage
     task_page: TaskPage
-
+    projects_page: ProjectsPage
     fake = FakeDataGenerator()
 
     @pytest.fixture(autouse=True)
@@ -43,3 +44,4 @@ class BaseTest:
         request.cls.delete_management_page = DeleteManagementPage(driver)
         request.cls.account_deleted_page = AccountDeletedPage(driver)
         request.cls.task_page = TaskPage(driver)
+        request.cls.projects_page = ProjectsPage(driver)

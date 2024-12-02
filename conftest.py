@@ -8,6 +8,7 @@ from pages.signup_page import SignupPage
 from pages.profile_management_pages import AccountManagementPage
 from pages.profile_management_pages import DeleteManagementPage
 from pages.account_deleted_page import AccountDeletedPage
+from pages.projects_page import ProjectsPage
 from utils.fake_data_generator import FakeDataGenerator
 from config.data import Data
 
@@ -29,7 +30,6 @@ def driver(request):
 def login(driver):
     login_page = LoginPage(driver)
     home_page = HomePage(driver)
-
     login_page.open()
     login_page.enter_email(Data.EMAIL)
     login_page.enter_password(Data.PASSWORD)
@@ -46,7 +46,6 @@ def create_account(driver):
     email = fake.email
     password = fake.password
     username = fake.username
-
     signup_page.open()
     signup_page.enter_email(email)
     signup_page.enter_password(password)
@@ -67,17 +66,14 @@ def delete_account(driver):
     account_deleted_page = AccountDeletedPage(driver)
 
     def _delete_account(email, password):
-        try:
-            home_page.open()
-            home_page.click_username_button()
-            home_page.click_settings_button()
-            account_management_page.click_delete_account_button()
-            delete_management_page.enter_todoist_email(email)
-            delete_management_page.enter_todoist_password(password)
-            delete_management_page.click_delete_account_button()
-            account_deleted_page.is_opened()
-        except Exception as e:
-            print(f"Error during account deletion: {e}")
+        home_page.open()
+        home_page.click_username_button()
+        home_page.click_settings_button()
+        account_management_page.click_delete_account_button()
+        delete_management_page.enter_todoist_email(email)
+        delete_management_page.enter_todoist_password(password)
+        delete_management_page.click_delete_account_button()
+        account_deleted_page.is_opened()
     return _delete_account
 
 
@@ -88,7 +84,6 @@ def create_task(driver):
     task_name = fake.task_name
     task_description = fake.task_description
     task_priority = random.randint(1, 4)
-
     home_page.click_add_task_button()
     home_page.enter_task_name(task_name)
     home_page.enter_task_description(task_description)
@@ -102,9 +97,38 @@ def create_task(driver):
 def delete_task(driver):
     def delete(task_name):
         home_page = HomePage(driver)
-
         home_page.open()
         home_page.click_more_actions_button(task_name)
         home_page.click_delete_button()
         home_page.confirm_deletion()
+    return delete
+
+
+@pytest.fixture(scope="function")
+def create_task_list(driver):
+    home_page = HomePage(driver)
+    projects_page = ProjectsPage(driver)
+    fake = FakeDataGenerator()
+    project_name = fake.project_name
+    home_page.click_my_projects_button()
+    projects_page.is_opened()
+    projects_page.click_my_projects_menu_button()
+    projects_page.click_add_project_button()
+    projects_page.enter_project_name(project_name)
+    projects_page.choose_list()
+    projects_page.click_add_button()
+    projects_page.is_my_projects_section_contains_project(project_name)
+    return project_name
+
+
+@pytest.fixture(scope="function")
+def delete_project(driver):
+    def delete(project_name):
+        home_page = HomePage(driver)
+        projects_page = ProjectsPage(driver)
+        home_page.click_my_projects_button()
+        projects_page.open_project(project_name)
+        projects_page.click_more_action_button()
+        projects_page.click_delete_button()
+        projects_page.is_my_project_section_not_contains_project(project_name)
     return delete

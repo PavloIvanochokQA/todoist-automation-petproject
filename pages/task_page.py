@@ -36,11 +36,6 @@ class TaskPage(BasePage):
     LABELS_BUTTON = ("xpath", "(//div[@data-testid='task-details-sidebar']//button)[5]")
     LABEL_FIELD = ("xpath", "//input[@aria-label='Type a label']")
 
-    def is_opened(self):
-        with allure.step(f"Verify that a page with a URL starting with {self.PAGE_URL} is opened"):
-            WebDriverWait(self.driver, 3).until(
-                lambda driver: driver.current_url.startswith(self.PAGE_URL))
-
     @allure.step("Verify that the task/sub-task contains the appropriate description")
     def is_task_contains_description(self, task_description):
         description_content = self.driver.find_element(*self.DESCRIPTION_VALUE).text

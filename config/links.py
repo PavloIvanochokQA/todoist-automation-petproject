@@ -13,3 +13,4 @@ class Links:
     DELETE_SETTINGS_PAGE = f"{ACCOUNT_SETTINGS_PAGE}/delete"
     ACCOUNT_DELETED_PAGE = f"{HOST}/auth/account-deleted"
     TASK_PAGE = f"{HOST}/app/task"
+    PROJECTS_PAGE = f"{HOST}/app/project"

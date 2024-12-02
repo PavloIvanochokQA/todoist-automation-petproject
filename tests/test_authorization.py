@@ -7,7 +7,6 @@ from utils.fake_data_generator import FakeDataGenerator
 class TestAuthorization(BaseTest):
 
     @allure.feature("Authorization")
-    @allure.story("User Login")
     @allure.description("""
     This test verifies that a user can successfully log in to an existing account using valid email and password credentials
     """)
@@ -23,7 +22,6 @@ class TestAuthorization(BaseTest):
         self.home_page.is_sidebar_contains_username(self.data.USERNAME)
 
     @allure.feature("Authorization")
-    @allure.story("User Logout")
     @allure.description("""
     This test verifies that a user can successfully log out from an account and is redirected to the login page
     """)
@@ -36,7 +34,6 @@ class TestAuthorization(BaseTest):
         self.login_page.is_page_heading_login()
 
     @allure.feature("Authorization")
-    @allure.story("Third-Party Login")
     @allure.description("""
     This test verifies that a user can successfully log in using a Google account, including the authorization process via Google's login page
     """)
@@ -55,7 +52,6 @@ class TestAuthorization(BaseTest):
         self.home_page.is_sidebar_contains_username(self.data.GMAIL_USERNAME)
 
     @allure.feature("Authorization")
-    @allure.story("Unsuccessful Login with Invalid Credentials")
     @allure.description("""
     This test verifies that a user cannot log in to an existing account using invalid credentials, such as incorrect email or password
     """)

@@ -7,7 +7,6 @@ from utils.fake_data_generator import FakeDataGenerator
 class TestProfileManagement(BaseTest):
 
     @allure.feature("Profile Management")
-    @allure.story("Account Deletion")
     @allure.description("""
     This test verifies that a user can successfully delete their account by accessing the account settings and following the deletion process
     """)
@@ -26,7 +25,6 @@ class TestProfileManagement(BaseTest):
         self.account_deleted_page.is_page_heading_account_deleted()
 
     @allure.feature("Profile Management")
-    @allure.story("Password Change")
     @allure.description("""
     This test verifies that a user can successfully change their password through the account settings by entering the current password and a new one
     """)
@@ -55,7 +53,6 @@ class TestProfileManagement(BaseTest):
                 delete_account(email, password_to_use)
 
     @allure.feature("Profile Management")
-    @allure.story("Account Information Management")
     @allure.description("""
     This test verifies that a user can successfully change their email address and username through the account settings
     """)
@@ -89,7 +86,6 @@ class TestProfileManagement(BaseTest):
                 delete_account(email_to_use, password)
 
     @allure.feature("Profile Management")
-    @allure.story("Password Change Failure with Incorrect Current Password")
     @allure.description("""
     This test verifies that a user cannot change the current password when providing an incorrect current password
     """)
@@ -121,7 +117,6 @@ class TestProfileManagement(BaseTest):
                 delete_account(email, password)
 
     @allure.feature("Profile Management")
-    @allure.story("Account Deletion Failure with Incorrect Credentials")
     @allure.description("""
     This test verifies that a user cannot delete their account when providing an incorrect email or password
     """)

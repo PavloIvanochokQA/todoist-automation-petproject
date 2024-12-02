@@ -28,9 +28,9 @@
 ## 3. Task Lists and Boards:
 * [TC23](/docs/test_cases/TC23.md): Successful creation of a new Task List.
 * [TC24](/docs/test_cases/TC24.md): Successful creation of a new Task Board with sections.
-* [TC25](/docs/test_cases/TC25.md): Successful change of the Task List name and type.
-* [TC26](/docs/test_cases/TC26.md): Successful deletion of a Task List or Task Board.
-* [TC27](/docs/test_cases/TC27.md): Unsuccessful creation of a new Task List due to invalid information.
+* [TC25](/docs/test_cases/TC25.md): Successful change of the Project name and type.
+* [TC26](/docs/test_cases/TC26.md): Successful deletion of a Project.
+* [TC27](/docs/test_cases/TC27.md): Unsuccessful creation of a new Project due to invalid information.
 * [TC28](/docs/test_cases/TC28.md): Successful duplication of a Task List.
 * [TC29](/docs/test_cases/TC29.md): Successful archiving of a Task List.
 * [TC30](/docs/test_cases/TC30.md): Successful task moving on Board.

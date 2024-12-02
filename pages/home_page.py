@@ -26,6 +26,7 @@ class HomePage(BasePage):
     CONFIRM_DELETION_BUTTON = ("xpath", "//div[@role='dialog']//button[@data-autofocus='true']")
     LABEL_HEADER = ("xpath", "//div[@data-testid='large-header']//h1")
     DUPLICATE_BUTTON = ("xpath", "//div[@data-action-hint='task-overflow-menu-duplicate']")
+    MY_PROJECTS_BUTTON = ("xpath", "//div[@class='WwLx9J2']//a[@href='/app/projects']")
 
     @allure.step("Click on the \"Username\" button")
     def click_username_button(self):
@@ -96,7 +97,6 @@ class HomePage(BasePage):
     @allure.step("Go to the \"Completed\" section")
     def open_completed_section(self):
         ActionChains(self.driver).key_down("c").key_down("g").key_up("g").key_up("c").perform()
-        self.driver.refresh()
 
     @allure.step("Verify that the task appears in the \"Completed\" section")
     def is_completed_section_contains_task(self, task_name):
@@ -157,7 +157,7 @@ class HomePage(BasePage):
     def click_duplicate_button(self):
         self.click_element(self.DUPLICATE_BUTTON)
 
-    @allure.step("verify that a duplicate of the task appears in the task list")
+    @allure.step("Verify that a duplicate of the task appears in the task list")
     def is_task_list_contains_duplicate(self, task_name):
         task_locator = ("xpath", f"//div[@class='list_holder']//div[text()='{task_name}']")
         elements = self.driver.find_elements(*task_locator)
@@ -168,3 +168,7 @@ class HomePage(BasePage):
         button = self.driver.find_element(*self.SUBMIT_ADD_TASK_BUTTON)
         aria_disabled = button.get_attribute("aria-disabled")
         assert aria_disabled == "true", f"The \"Add task\" button is not disabled"
+
+    @allure.step("Click on the \"My Projects\" button")
+    def click_my_projects_button(self):
+        self.click_element(self.MY_PROJECTS_BUTTON)

@@ -10,3 +10,4 @@ class FakeDataGenerator:
         self.task_name = self.fake.sentence()
         self.task_description = ' '.join(self.fake.sentences(nb=3))
         self.comment = self.fake.sentence()
+        self.project_name = ' '.join(self.fake.words(nb=3))
