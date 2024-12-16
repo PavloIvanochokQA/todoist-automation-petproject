@@ -10,6 +10,7 @@ class TestAuthorization(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully login to an existing account using valid email and password credentials.
     """)
+    @allure.severity(allure.severity_level.CRITICAL)
     @allure.title("TC02: Successful login to an existing account with valid information.")
     def test_authorization(self):
         # Steps:
@@ -25,6 +26,7 @@ class TestAuthorization(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully logout from an account and is redirected to the login page.
     """)
+    @allure.severity(allure.severity_level.NORMAL)
     @allure.title("TC03: Successful logout from an account.")
     def test_logout(self, login):
         # Steps:
@@ -37,6 +39,7 @@ class TestAuthorization(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully login using a Google account, including the authorization process via Google's login page.
     """)
+    @allure.severity(allure.severity_level.NORMAL)
     @allure.title("TC04: Ability to login using a Google account.")
     @pytest.mark.skip(reason="The test is skipped because a CAPTCHA pass is sometimes required")
     def test_authorization_using_google(self):
@@ -56,6 +59,7 @@ class TestAuthorization(BaseTest):
     @allure.description("""
     This test verifies that a user cannot login to an existing account using invalid credentials, such as incorrect email or password.
     """)
+    @allure.severity(allure.severity_level.MINOR)
     @allure.title("TC09: Unsuccessful login to an existing account with invalid information.")
     def test_unsuccessful_authorization(self):
         fake = FakeDataGenerator()

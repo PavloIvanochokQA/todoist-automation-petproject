@@ -9,6 +9,7 @@ class TestProjectsManagement(BaseTest):
     @allure.description("""
     This test verifies that a new Task List can be successfully created with a valid name.
     """)
+    @allure.severity(allure.severity_level.CRITICAL)
     @allure.title("TC23: Successful creation of a new Task List.")
     def test_task_list_creation(self, login, delete_project):
         fake = FakeDataGenerator()
@@ -30,6 +31,7 @@ class TestProjectsManagement(BaseTest):
     @allure.description("""
     This test verifies that a new Task Board can be successfully created with multiple sections.
     """)
+    @allure.severity(allure.severity_level.CRITICAL)
     @allure.title("TC24: Successful creation of a new Task Board with sections.")
     def test_task_board_creation(self, login, delete_project):
         fake = FakeDataGenerator()
@@ -68,6 +70,7 @@ class TestProjectsManagement(BaseTest):
     @allure.description("""
     This test verifies that the project name and type can be successfully changed.
     """)
+    @allure.severity(allure.severity_level.NORMAL)
     @allure.title("TC25: Successful change of the Project name and type.")
     def test_project_name_type_change(self, login, create_task_list, delete_project):
         project_name = create_task_list
@@ -94,6 +97,7 @@ class TestProjectsManagement(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully delete an existing project.
     """)
+    @allure.severity(allure.severity_level.CRITICAL)
     @allure.title("TC26: Successful deletion of a Project.")
     def test_project_deletion(self, login, create_task_list):
         project_name = create_task_list
@@ -108,6 +112,7 @@ class TestProjectsManagement(BaseTest):
     @allure.description("""
     This test verifies that the system prevents the creation of a new project when invalid information is provided.
     """)
+    @allure.severity(allure.severity_level.MINOR)
     @allure.title("TC27: Unsuccessful creation of a new Project due to invalid information.")
     def test_unsuccessful_project_creation(self, login):
         project_name = ""
@@ -123,6 +128,7 @@ class TestProjectsManagement(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully duplicate an existing task list, creating an identical copy.
     """)
+    @allure.severity(allure.severity_level.MINOR)
     @allure.title("TC28: Successful duplication of a Task List.")
     def test_task_list_duplication(self, login, create_task_list, create_task, delete_project):
         project_name = create_task_list
@@ -145,6 +151,7 @@ class TestProjectsManagement(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully archive a project, confirm its archival in the archived projects section, and restore it back to the active projects section.
     """)
+    @allure.severity(allure.severity_level.NORMAL)
     @allure.title("TC29: Successful archiving of a Project.")
     def test_project_archiving(self, login, create_task_list, delete_project):
         project_name = create_task_list
@@ -170,6 +177,7 @@ class TestProjectsManagement(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully move a task from one column to another on the Board, ensuring the task's position is updated correctly and persists after a page refresh.
     """)
+    @allure.severity(allure.severity_level.NORMAL)
     @allure.title("TC30: Successful task moving on Board.")
     def test_task_moving_on_board(self, login, create_task_board, delete_project):
         project_name, first_section, second_section, third_section = create_task_board

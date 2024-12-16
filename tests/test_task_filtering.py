@@ -9,6 +9,7 @@ class TestTaskFiltering(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully filter tasks by their priority, ensuring the filtered tasks match the specified priority and display correctly in the task list.
     """)
+    @allure.severity(allure.severity_level.MINOR)
     @allure.title("TC33: Successful filtering for a task by its priority.")
     def test_task_filtering_by_priority(self, login, create_task, delete_task):
         task_name, task_description, task_priority = create_task
@@ -33,6 +34,7 @@ class TestTaskFiltering(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully filter tasks by their label, ensuring the filtered tasks match the specified label and display correctly in the task list.
     """)
+    @allure.severity(allure.severity_level.MINOR)
     @allure.title("TC34: Successful filtering for a task by its label.")
     def test_task_filtering_by_label(self, login, create_task, delete_task):
         task_name, task_description, task_priority = create_task
@@ -58,6 +60,7 @@ class TestTaskFiltering(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully filter tasks by their due date, ensuring the filtered tasks match the specified date and display correctly in the task list.
     """)
+    @allure.severity(allure.severity_level.MINOR)
     @allure.title("TC35: Successful filtering for a task by its due date.")
     def test_task_filtering_by_due_date(self, login, create_task, delete_task):
         task_name, task_description, task_priority = create_task

@@ -10,6 +10,7 @@ class TestTaskSearch(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully search for a task by its exact name, ensuring that the correct task is displayed in the search results.
     """)
+    @allure.severity(allure.severity_level.NORMAL)
     @allure.title("TC31: Successful search for a task by its name.")
     def test_task_search_by_name(self, login, create_task, delete_task):
         task_name, task_description, task_priority = create_task
@@ -29,6 +30,7 @@ class TestTaskSearch(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully search for a task by its description, ensuring that the correct task is displayed in the search results.
     """)
+    @allure.severity(allure.severity_level.NORMAL)
     @allure.title("TC32: Successful search for a task by its description.")
     def test_task_search_by_description(self, login, create_task, delete_task):
         task_name, task_description, task_priority = create_task
@@ -49,6 +51,7 @@ class TestTaskSearch(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully search for a task containing links, ensuring that tasks with URLs are correctly identified and displayed in the search results.
     """)
+    @allure.severity(allure.severity_level.NORMAL)
     @allure.title("TC36: Successful search for a task that contains links.")
     def test_task_search_by_link(self, login, delete_task):
         links = ["https://github.com/", "https://www.youtube.com/", "https://www.google.com/"]
@@ -74,6 +77,7 @@ class TestTaskSearch(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully search for a task with a specific comment, ensuring that tasks containing the specified comment are correctly identified and displayed in the search results.
     """)
+    @allure.severity(allure.severity_level.MINOR)
     @allure.title("TC37: Successful search for a task with a specific comment.")
     def test_task_search_by_comment(self, login, create_task, delete_task):
         task_name, task_description, task_priority = create_task
@@ -101,6 +105,7 @@ class TestTaskSearch(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully search for a sub-task by its name, ensuring that the sub-task is correctly identified and displayed in the search results.
     """)
+    @allure.severity(allure.severity_level.MINOR)
     @allure.title("TC38: Successful search for a sub-task by its name.")
     def test_subtask_search_by_name(self, login, create_task, delete_task):
         task_name, task_description, task_priority = create_task
@@ -127,6 +132,7 @@ class TestTaskSearch(BaseTest):
     @allure.description("""
     This test verifies that when a user searches for non-existent information, the search results do not display any matching tasks, confirming that the system handles such cases properly.
     """)
+    @allure.severity(allure.severity_level.MINOR)
     @allure.title("TC39: Unsuccessful search for a task with non-existent information.")
     def test_unsuccessful_task_search(self, login):
         fake = FakeDataGenerator()

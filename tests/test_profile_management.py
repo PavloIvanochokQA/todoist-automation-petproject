@@ -10,6 +10,7 @@ class TestProfileManagement(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully delete their account by accessing the account settings and following the deletion process.
     """)
+    @allure.severity(allure.severity_level.CRITICAL)
     @allure.title("TC07: Successful account deletion.")
     def test_accound_deletion(self, create_account):
         email, password, username = create_account
@@ -28,6 +29,7 @@ class TestProfileManagement(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully change their password through the account settings by entering the current password and a new one.
     """)
+    @allure.severity(allure.severity_level.CRITICAL)
     @allure.title("TC05: Successful password change.")
     def test_password_change(self, create_account, delete_account):
         email, password, username = create_account
@@ -56,6 +58,7 @@ class TestProfileManagement(BaseTest):
     @allure.description("""
     This test verifies that a user can successfully change their email address and username through the account settings.
     """)
+    @allure.severity(allure.severity_level.NORMAL)
     @allure.title("TC06: Successful email and username change.")
     def test_email_and_username_change(self, create_account, delete_account):
         email, password, username = create_account
@@ -89,6 +92,7 @@ class TestProfileManagement(BaseTest):
     @allure.description("""
     This test verifies that a user cannot change the current password when providing an incorrect current password.
     """)
+    @allure.severity(allure.severity_level.NORMAL)
     @allure.title("TC10: Inability to change the current password with an incorrect password.")
     def test_unsuccessful_password_change(self, create_account, delete_account):
         email, password, username = create_account
@@ -121,6 +125,7 @@ class TestProfileManagement(BaseTest):
     @allure.description("""
     This test verifies that a user cannot delete their account when providing an incorrect email or password.
     """)
+    @allure.severity(allure.severity_level.NORMAL)
     @allure.title("TC11: Inability to delete the account with an incorrect email or password.")
     def test_unsuccessful_account_deletion(self, create_account, delete_account):
         email, password, username = create_account
