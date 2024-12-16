@@ -16,7 +16,7 @@ from config.data import Data
 @pytest.fixture(scope='function', autouse=True)
 def driver(request):
     options = Options()
-    # options.add_argument("--headless")
+    options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--window-size=1920,1080")
@@ -49,7 +49,7 @@ def create_account(driver):
     signup_page.open()
     signup_page.enter_email(email)
     signup_page.enter_password(password)
-    signup_page.click_signup_button()
+    signup_page.click_signup_with_email_button()
     signup_page.enter_username(username)
     signup_page.click_continue_button()
     signup_page.select_personal_checkbox()
@@ -64,14 +64,13 @@ def delete_account(driver):
     delete_management_page = DeleteManagementPage(driver)
     account_management_page = AccountManagementPage(driver)
     account_deleted_page = AccountDeletedPage(driver)
-
     def _delete_account(email, password):
         home_page.open()
         home_page.click_username_button()
         home_page.click_settings_button()
         account_management_page.click_delete_account_button()
-        delete_management_page.enter_todoist_email(email)
-        delete_management_page.enter_todoist_password(password)
+        delete_management_page.enter_email(email)
+        delete_management_page.enter_password(password)
         delete_management_page.click_delete_account_button()
         account_deleted_page.is_opened()
     return _delete_account
@@ -86,7 +85,7 @@ def create_task(driver):
     task_priority = random.randint(1, 4)
     home_page.click_add_task_button()
     home_page.enter_task_name(task_name)
-    home_page.enter_task_description(task_description)
+    home_page.enter_description(task_description)
     home_page.set_task_priority(task_priority)
     home_page.click_submit_add_task_button()
     home_page.is_task_list_contains_task(task_name)
@@ -128,7 +127,33 @@ def delete_project(driver):
         projects_page = ProjectsPage(driver)
         home_page.click_my_projects_button()
         projects_page.open_project(project_name)
-        projects_page.click_more_action_button()
+        projects_page.click_more_actions_button()
         projects_page.click_delete_button()
         projects_page.is_my_project_section_not_contains_project(project_name)
     return delete
+
+
+@pytest.fixture(scope="function")
+def create_task_board(driver):
+    projects_page = ProjectsPage(driver)
+    fake = FakeDataGenerator()
+    first_section = "To Do"
+    second_section = "In Progress"
+    third_section = "Done"
+    project_name = fake.project_name
+    projects_page.click_my_projects_button()
+    projects_page.click_my_projects_menu_button()
+    projects_page.click_add_project_button()
+    projects_page.enter_project_name(project_name)
+    projects_page.choose_board()
+    projects_page.click_add_button()
+    projects_page.is_my_projects_section_contains_project(project_name)
+    projects_page.enter_section_name(first_section)
+    projects_page.click_confirm_add_section_button()
+    projects_page.click_add_section_button()
+    projects_page.enter_section_name(second_section)
+    projects_page.click_confirm_add_section_button()
+    projects_page.click_add_section_button()
+    projects_page.enter_section_name(third_section)
+    projects_page.click_confirm_add_section_button()
+    return project_name, first_section, second_section, third_section

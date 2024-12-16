@@ -32,18 +32,16 @@
 * [TC26](/docs/test_cases/TC26.md): Successful deletion of a Project.
 * [TC27](/docs/test_cases/TC27.md): Unsuccessful creation of a new Project due to invalid information.
 * [TC28](/docs/test_cases/TC28.md): Successful duplication of a Task List.
-* [TC29](/docs/test_cases/TC29.md): Successful archiving of a Task List.
+* [TC29](/docs/test_cases/TC29.md): Successful archiving of a Project.
 * [TC30](/docs/test_cases/TC30.md): Successful task moving on Board.
 
 ## 4. Search and Filtering:
 * [TC31](/docs/test_cases/TC31.md): Successful search for a task by its name.
 * [TC32](/docs/test_cases/TC32.md): Successful search for a task by its description.
-* [TC33](/docs/test_cases/TC33.md): Successful search for a task by its priority.
-* [TC34](/docs/test_cases/TC34.md): Successful search for a task by its label.
-* [TC35](/docs/test_cases/TC35.md): Successful search for a task by its due date.
-* [TC36](/docs/test_cases/TC36.md): Successful search for a task with an emoji.
-* [TC37](/docs/test_cases/TC37.md): Successful search for a task that contains links.
-* [TC38](/docs/test_cases/TC38.md): Successful search for a task with a specific comment.
-* [TC39](/docs/test_cases/TC39.md): Successful search for a task that has sub-tasks.
-* [TC40](/docs/test_cases/TC40.md): Unsuccessful search for a task with non-existent information.
-* [TC41](/docs/test_cases/TC41.md): Successful saving of a filter based on specified criteria.
+* [TC33](/docs/test_cases/TC33.md): Successful filtering for a task by its priority.
+* [TC34](/docs/test_cases/TC34.md): Successful filtering for a task by its label.
+* [TC35](/docs/test_cases/TC35.md): Successful filtering for a task by its due date.
+* [TC36](/docs/test_cases/TC36.md): Successful search for a task that contains a link.
+* [TC37](/docs/test_cases/TC37.md): Successful search for a task with a specific comment.
+* [TC38](/docs/test_cases/TC38.md): Successful search for a sub-task by its name.
+* [TC39](/docs/test_cases/TC39.md): Unsuccessful search for a task with non-existent information.
