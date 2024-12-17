@@ -37,6 +37,8 @@ jobs:
           sudo mkdir -p allure-results/history  # Створює директорію для історії Allure
           if [ -d "./.github/gh-pages/history" ]; then
             sudo cp -R ./.github/gh-pages/history/* allure-results/history/
+          else
+            echo "No history directory found. Skipping copy step."
           fi
 
       - name: Generate Allure report
