@@ -22,7 +22,8 @@ jobs:
           sudo apt-get install -y docker.io
           sudo curl -L "https://github.com/docker/compose/releases/download/v2.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
-          docker-compose --version
+          sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose  # Створює символічне посилання для доступу до docker-compose
+          docker-compose --version  # Перевіряє версію docker-compose
 
       - name: Run UI-tests via docker-compose
         env:
