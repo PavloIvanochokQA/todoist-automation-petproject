@@ -64,6 +64,7 @@ def delete_account(driver):
     delete_management_page = DeleteManagementPage(driver)
     account_management_page = AccountManagementPage(driver)
     account_deleted_page = AccountDeletedPage(driver)
+
     def _delete_account(email, password):
         home_page.open()
         home_page.click_username_button()
