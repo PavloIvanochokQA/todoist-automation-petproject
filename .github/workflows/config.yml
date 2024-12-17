@@ -7,13 +7,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Checkout (copy) gh-pages repository to GitHub runner
         uses: actions/checkout@v2
         with:
           ref: gh-pages
           path: ./.github/gh-pages
+
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
 
       - name: Run UI-tests via docker-compose
         env:
@@ -28,8 +34,10 @@ jobs:
 
       - name: Copy history from gh-pages to allure-results
         run: |
-          sudo mkdir -p allure-results/history  # Создает директорию для истории Allure
-          sudo cp -R ./.github/gh-pages/history/* allure-results/history/
+          sudo mkdir -p allure-results/history  # Створює директорію для історії Allure
+          if [ -d "./.github/gh-pages/history" ]; then
+            sudo cp -R ./.github/gh-pages/history/* allure-results/history/
+          fi
 
       - name: Generate Allure report
         run: |
