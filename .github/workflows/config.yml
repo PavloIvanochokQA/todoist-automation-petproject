@@ -20,7 +20,7 @@ jobs:
           EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{ secrets.PASSWORD }}
         run: |
-          docker-compose up --exit-code-from regression || true
+          docker-compose up 
 
       - name: Copy history from gh-pages to allure-results
         run: |
