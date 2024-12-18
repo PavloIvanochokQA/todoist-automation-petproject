@@ -1,6 +1,11 @@
 name: Automated tests
 
 on: workflow_dispatch
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
     
 jobs:
   download-history:
