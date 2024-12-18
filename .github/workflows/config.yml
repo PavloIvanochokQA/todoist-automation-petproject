@@ -1,6 +1,7 @@
 name: Automated tests
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
     
 jobs:
   download-history:
