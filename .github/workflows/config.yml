@@ -20,7 +20,7 @@ jobs:
           EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{ secrets.PASSWORD }}
         run: |
-          docker-compose up 
+          docker-compose build 
 
       - name: Copy history from gh-pages to allure-results
         run: |
